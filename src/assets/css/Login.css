@@ -1,0 +1,11 @@
+.container-login{padding: 20px 15px;max-width: 480px;margin: auto;}
+.container-form-login{border: 1px solid var(--baseColor);padding: 30px 15px;border-radius: 10px;margin-top: 20px;}
+.container-form-login h2{font-size: 30px;text-align: center;}
+.container-form-login label{display: block;margin: 25px 0px 10px;font-size: 16px;}
+.container-form-login input{border: 1px solid var(--baseColor);padding: 12px;width: 100%;font-size: 16px;border-radius: 7px;}
+.container-form-login button{background-color: var(--baseColor);color: var(--baseBackground);padding: 12px 10px;width: 100%;margin: 40px 0px 5px; 
+    border-radius: 7px;font-weight: bold;font-size: 18px;}
+
+@media screen and (min-width: 900px) {
+    .container-login{padding: 20px 15px;}
+}
