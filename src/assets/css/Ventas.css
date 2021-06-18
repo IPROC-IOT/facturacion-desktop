@@ -1,0 +1,33 @@
+.container-title-operations{display: flex;}
+
+.container-save-add{width: 180px;display: flex;justify-content: space-between;align-items: center;}
+.container-save-add svg{font-size: 22px;}
+.container-save-add path{color: var(--green);}
+.container-save-add button, .container-save-add a{font-size: 16px;display: flex;align-items: center;border: 1px solid;padding: 10px 13px;border-radius: 7px;}
+.container-save-add a svg{margin-right: 7px;font-size: 20px;}
+.container-save-add a path{stroke: var(--baseColor);}
+
+#botonExportarExcel{border-color: var(--green);}
+.tabla-ventas{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.tabla-ventas td, .tabla-ventas th {
+    border: 1px solid var(--gray);
+    padding: 8px;
+}
+
+.tabla-ventas tr:nth-child(even){background-color: var(--opacity3);}
+
+.tabla-ventas tr:hover {background-color: var(--opacity2);}
+
+.tabla-ventas th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: var(--table);
+    color: var(--gray);
+}

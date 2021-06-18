@@ -33,14 +33,19 @@ path{
 }
 
 :root {
-  --baseBackground: white;
+  --baseBackground: #ebedf7;
   --baseColor: #14142B;
-  --gray: #DCDEEB;
+  --table: #353552;
+  --gray: white;
+  --opacity: #15162fa4;
+  --opacity2: #15162f46;
+  --opacity3: #cbcbdd31;
   --green: #16B188;
-  --coral: #eb6364;
-  --switchSpinner: white;
-  --switch: #5f616d;
+  --switchSpinner: #14142B;
+  --switch: #9fa2bb;
 }
+
+h1{text-align: center;margin: 30px auto;}
 
 .dark-mode {
   display: flex;
@@ -106,6 +111,7 @@ path{
 .is-dark-mode {
   --baseBackground: #101025;
   --baseColor: white;
+  --table: #d4d4e0;
   --gray: #3c3953;
   --opacity: #575772a4;
   --opacity2: #5757723a;
@@ -118,6 +124,7 @@ path{
 .is-light-mode {
   --baseBackground: #ebedf7;
   --baseColor: #14142B;
+  --table: #353552;
   --gray: white;
   --opacity: #15162fa4;
   --opacity2: #15162f46;
@@ -131,21 +138,5 @@ path{
 .container-page{
   min-height: calc(100vh - 50px);
   background-color: var(--gray);
-  margin-top: 50px;
   padding: 15px;
-}
-
-/* graphic */
-.container-graphic{
-  background-color: var(--baseBackground);
-  border-radius: 5px;
-  box-shadow: 1px 0 10px rgb(0 0 0 / 10%)
-}
-
-/* btn - chart - export */
-.amcharts-amexport-item {
-  color: var(--baseColor)!important;
-  border: 1px solid var(--opacity2);
-  background-color: var(--baseBackground)!important;
-  opacity: 0.1;
 }

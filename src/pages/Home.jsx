@@ -1,10 +1,11 @@
 import React from 'react'
+import '../assets/css/Home.css'
 
 const Home = () => {
     return (
-        <div>
+        <main className="container-page">
             screen home
-        </div>
+        </main>
     )
 }
 
