@@ -16,3 +16,68 @@ export const ShowVentas = async () => {
         return false
     }
 }
+
+export const ShowTypeDocument = async () => {
+    const requestUrl = `${API_BASE_URL}/sales/document/all/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+export const ShowTypeRecipe = async () => {
+    const requestUrl = `${API_BASE_URL}/sales/type-recipe/all/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+export const ShowSupplier = async () => {
+    const requestUrl = `${API_BASE_URL}/sales/supplier/all/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+export const CreateSale = async (data) => {
+    const requestUrl = `${API_BASE_URL}/sales/create/sale-record/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'post',
+            data,
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}

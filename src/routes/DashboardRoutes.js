@@ -5,6 +5,7 @@ import Compras from '../pages/Compras'
 import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import Ventas from '../pages/Ventas'
+import VentasAdd from '../pages/VentasAdd'
 
 export const DashboardRoutes = () => {
     return (
@@ -12,6 +13,7 @@ export const DashboardRoutes = () => {
             <Switch>
                 <Route exact path="/" component={ Home }/>
                 <Route exact path="/ventas" component={ Ventas }/>
+                <Route exact path="/ventas/add" component={ VentasAdd }/>
                 <Route exact path="/compras" component={ Compras }/>
                 <Route component={NotFound} />
             </Switch>
