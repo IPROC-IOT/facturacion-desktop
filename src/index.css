@@ -42,6 +42,7 @@ path{
   --opacity3: #cbcbdd31;
   --green: #16B188;
   --switchSpinner: #14142B;
+  --coral: #EB6364;
   --switch: #9fa2bb;
 }
 
@@ -118,6 +119,7 @@ h1{text-align: center;margin: 30px auto;}
   --opacity3: #15162f46;
   --green: #16B188;
   --switchSpinner: #25263a;
+  --coral: #EB6364;
   --switch: linear-gradient(to right, #2387aa 0%, #16B188 100%);
 }
 
@@ -131,6 +133,7 @@ h1{text-align: center;margin: 30px auto;}
   --opacity3: #cbcbdd31;
   --green: #16B188;
   --switchSpinner: #14142B;
+  --coral: #EB6364;
   --switch: #9fa2bb;
 }
 

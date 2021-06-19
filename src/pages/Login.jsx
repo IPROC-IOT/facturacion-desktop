@@ -32,7 +32,7 @@ const Login = (props) => {
             const result = await LoginService(form)
             if (result.statusText === "OK") {
                 sessionStorage.setItem("crdt",result.data.refresh)
-                const lastPath = sessionStorage.getItem('lastPath') || '/' 
+                const lastPath = sessionStorage.getItem('lastPath') || '/ventas' 
                 dispatch(props.loginRequest(result.data));
                 props.history.replace(lastPath);
             }else{
