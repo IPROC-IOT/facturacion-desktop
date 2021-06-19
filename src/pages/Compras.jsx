@@ -41,7 +41,7 @@ const Compras = () => {
                         <div>INFORMACION DEL PROVEEDOR</div>
                                 <div>DOC. IDENTIDAD</div>
                         <div>ADQUI GRAV DESTINADAS A OPERACIONES GRAVADAS Y O DE EXPORTACION</div> */}
-            <table className="tabla-ventas" id="tabla_ventas">
+            <table className="tabla-ventas" id="tabla_compras">
                 <tr>
                     <th>FECHA DE EMISION</th>
                     <th>TIPO</th>
