@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { ChangeDolar, CreateSale, ShowTypeDocument, ShowTypeRecipe } from '../services/ventas';
+import { ChangeDolar, CreatePucharse, ShowTypeDocument, ShowTypeRecipe } from '../services/compras';
 import DatePicker from 'react-date-picker';
 import '../assets/css/VentasAdd.css'
 import { getRuc } from '../services/externalApis';
 
-const VentasAdd = (props) => {
+const ComprasAdd = (props) => {
 
     const [value, setValue] = useState(new Date());
     const [typeDoc, setTypeDoc] = useState([])
@@ -110,9 +110,9 @@ const VentasAdd = (props) => {
                 setError(true)
                 break;
         }
-        const result = await CreateSale(data)
+        const result = await CreatePucharse(data)
         if (result.statusText === "OK") {
-            props.history.push("/ventas")
+            props.history.push("/compras")
         } else {
             setError(true)
         }
@@ -141,7 +141,7 @@ const VentasAdd = (props) => {
             <form className="form-add-venta" onSubmit={onSubmit} >
                 <div className="form-1-add-venta">
                     <label htmlFor="mes_registro">
-                        MES DE REGISTRO:&nbsp;
+                        MES DE REGISTRO:
                         <select name="month" id="mes_registro">
                             <option value="">------------</option>
                             <option value="Enero">Enero</option>
@@ -159,7 +159,7 @@ const VentasAdd = (props) => {
                         </select>
                     </label>
                     <label htmlFor="year">
-                        AÑO DE REGISTRO:&nbsp;
+                        AÑO DE REGISTRO:
                         <input 
                             type="number" 
                             name="year" 
@@ -173,7 +173,7 @@ const VentasAdd = (props) => {
 
                 <div className="form-2-add-venta">
                     <label htmlFor="fecha_emision">
-                        FECHA DE EMISION: &nbsp;
+                        FECHA DE EMISION: 
                         <DatePicker
                             id="fecha_emision"
                             onChange={setValue}
@@ -182,50 +182,48 @@ const VentasAdd = (props) => {
                         />
                     </label>
                     <label htmlFor="document">
-                        TIPO DE DOCUMENTO:&nbsp;
+                        TIPO DE DOCUMENTO:
                         <select name="document" id="document">
                             <option value="">------------------</option>
                             {typeDoc.map((t) => <option key={t.id} value={t.document}>{t.document}</option>)}
                         </select>
                     </label>
                     <label htmlFor="serie">
-                        SERIE:&nbsp;
+                        SERIE:
                         <input type="text" name="serie" id="serie" />
                     </label>
                     <label htmlFor="number">
-                        NÚMERO:&nbsp;
+                        NÚMERO:
                         <input type="number" name="number" id="number" />
                     </label>
                     <label htmlFor="recipe">
-                        TIPO:&nbsp;
+                        TIPO:
                         <select name="recipe" id="recipe">
                             <option value="">------------------</option>
                             {typeRecipe.map((t) => <option key={t.id} value={t.recipe}>{t.recipe}</option>)}
                         </select>
                     </label>
                     <label htmlFor="ruc">
-                        RUC DEL PROVEEDOR:&nbsp;
+                        RUC DEL PROVEEDOR:
                         <input 
                             type="number" 
                             name="ruc" 
                             id="ruc" 
-                            min="0"
-                            max="777777777777"
+                            max="999999999999"
                             onChange={(event) => setRuc(event.target.value)}
                         />
                     </label>
                     <label htmlFor="razon_social">
-                        NOMBRE O RAZÓN SOCIAL:&nbsp;
+                        NOMBRE O RAZÓN SOCIAL:
                         <input 
                             type="text" 
-                            name="business_name"
-                            className="razon-social-form"
                             value={razonSocial}
                             disabled={"true"}
                         />
                     </label>
                 </div>
 
+                <hr />
                 <p>
                     <input 
                         type="radio" 
@@ -251,15 +249,15 @@ const VentasAdd = (props) => {
                 {solesDolars === "soles" &&
                     <div className="form-3-add-venta">
                         <label htmlFor="tax_base">
-                            BASE IMPONIBLE (en soles):&nbsp;
+                            BASE IMPONIBLE (en soles):
                             <input type="number" name="tax_base" id="tax_base" step="0.001" onChange={updateInput} />
                         </label>
                         <label htmlFor="tb_igv">
-                            IGV:&nbsp;
+                            IGV:
                             <input type="number" name="tb_igv" id="tb_igv" step="0.01" value="0.18" disabled={"true"} />
                         </label>
                         <label htmlFor="tb_total">
-                            TOTAL:&nbsp;
+                            TOTAL:
                             <input type="number" name="tb_total" id="tb_total" onChange={updateInput} value={totalSoles} disabled={"true"} />
                         </label>
                     </div>
@@ -268,24 +266,25 @@ const VentasAdd = (props) => {
                 {solesDolars === "dolares" &&
                     <div className="form-4-add-venta">
                         <label htmlFor="tax_base_dolar">
-                            BASE IMPONIBLE (en dolares):&nbsp;
+                            BASE IMPONIBLE (en dolares):
                             <input type="number" name="tax_base_dolar" id="tax_base_dolar" onChange={updateInput2} />
                         </label>
                         <label htmlFor="change_type">
-                            TIPO DE CAMBIO:&nbsp;
+                            TIPO DE CAMBIO:
                             <input type="number" name="change_type" id="change_type" value={valueDolar} disabled={"true"} />
                         </label>
                         <label htmlFor="tb_igv_dolar">
-                            IGV:&nbsp;
+                            IGV:
                             <input type="number" name="tb_igv_dolar" id="tb_igv_dolar" value="0.18" disabled={"true"} />
                         </label>
                         <label htmlFor="tb_total_dolar">
-                            TOTAL:&nbsp;
+                            TOTAL:
                             <input type="number" name="tb_total_dolar" id="tb_total_dolar" onChange={updateInput2} value={totalDolares} disabled={"true"} />
                         </label>
                     </div>
                 }
 
+                <hr />
                 {error &&
                     <p className="error">Completar todos los campos correctamente</p>
                 }
@@ -295,4 +294,4 @@ const VentasAdd = (props) => {
     )
 }
 
-export default VentasAdd
+export default ComprasAdd

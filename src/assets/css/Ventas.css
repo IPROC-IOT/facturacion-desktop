@@ -31,3 +31,7 @@
     background-color: var(--table);
     color: var(--gray);
 }
+
+@media screen and (min-width: 900px) {
+    .razon-social-form{width: 400px;}
+}

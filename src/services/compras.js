@@ -1,8 +1,8 @@
 import axios from "axios";
 import API_BASE_URL from "../config/api";
 
-export const ShowVentas = async () => {
-    const requestUrl = `${API_BASE_URL}/sales/sales-records/all/`;
+export const ShowCompras = async () => {
+    const requestUrl = `${API_BASE_URL}/purchases/purchases-records/all/`;
 
     try {
         const resp = await axios({
@@ -18,7 +18,7 @@ export const ShowVentas = async () => {
 }
 
 export const ShowTypeDocument = async () => {
-    const requestUrl = `${API_BASE_URL}/sales/document/all/`;
+    const requestUrl = `${API_BASE_URL}/purchases/document/all/`;
 
     try {
         const resp = await axios({
@@ -34,7 +34,7 @@ export const ShowTypeDocument = async () => {
 }
 
 export const ShowTypeRecipe = async () => {
-    const requestUrl = `${API_BASE_URL}/sales/type-recipe/all/`;
+    const requestUrl = `${API_BASE_URL}/purchases/type-recipe/all/`;
 
     try {
         const resp = await axios({
@@ -50,7 +50,7 @@ export const ShowTypeRecipe = async () => {
 }
 
 export const ShowSupplier = async () => {
-    const requestUrl = `${API_BASE_URL}/sales/supplier/all/`;
+    const requestUrl = `${API_BASE_URL}/purchases/supplier/all/`;
 
     try {
         const resp = await axios({
@@ -66,7 +66,7 @@ export const ShowSupplier = async () => {
 }
 
 export const ChangeDolar = async () => {
-    const requestUrl = `${API_BASE_URL}/sales/change-dolar-sunat/`;
+    const requestUrl = `${API_BASE_URL}/purchases/change-dolar-sunat/`;
 
     try {
         const resp = await axios({
@@ -82,8 +82,8 @@ export const ChangeDolar = async () => {
     }
 }
 
-export const CreateSale = async (data) => {
-    const requestUrl = `${API_BASE_URL}/sales/create/sale-record/`;
+export const CreatePucharse = async (data) => {
+    const requestUrl = `${API_BASE_URL}/purchases/create/pucharse-record/`;
 
     try {
         const resp = await axios({

@@ -15,22 +15,3 @@ export const getRuc = async (ruc) => {
         return false
     }
 }
-
-export const getChangeDolar = async () => {
-    const requestUrl = `https://www.sunat.gob.pe/a/txt/tipoCambio.txt`;
-
-    try {
-        const resp = await axios({
-            url: requestUrl,
-            method: 'get',
-        });
-        if (resp.status === 200 || 201) {
-            return resp
-        }
-    } catch (error) {
-        return false
-    }
-}
-
-
-  

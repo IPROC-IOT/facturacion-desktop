@@ -34,7 +34,7 @@ const Login = (props) => {
                 sessionStorage.setItem("crdt",result.data.refresh)
                 const lastPath = sessionStorage.getItem('lastPath') || '/ventas' 
                 dispatch(props.loginRequest(result.data));
-                props.history.replace(lastPath);
+                props.history.replace('/ventas');
             }else{
                 setErrorLogin(true)
                 setBtnDisable(false)
