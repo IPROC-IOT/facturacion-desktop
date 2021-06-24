@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { ChangeDolar, CreatePucharse, ShowTypeDocument, ShowTypeRecipe } from '../services/compras';
 import DatePicker from 'react-date-picker';
-import '../assets/css/VentasAdd.css'
 import { getRuc } from '../services/externalApis';
+import '../assets/css/VentasAdd.css'
 
 const ComprasAdd = (props) => {
 
@@ -16,27 +16,60 @@ const ComprasAdd = (props) => {
     const [totalSoles, setTotalSoles] = useState(0)
     const [totalDolares, setTotalDolares] = useState(0)
     const [valueDolar, setValueDolar] = useState(0)
+    const [ctdIGVSoles, setCtdIGVSoles] = useState(0)
+    const [ctdIGVDolar, setctdIGVDolar] = useState(0)
+    const [priceTotal, setPriceTotal] = useState(0)
+    const [priceMoment, setPriceMoment] = useState(0)
+    const [priceCapture, setPriceCapture] = useState(0)
+    const [priceTotalConvertido, setPriceTotalConvertido] = useState(0)
 
-    const updateInput = (event) => {
-        const monto = parseFloat(event.target.value)
-        if (parseFloat(event.target.value) !== NaN) {
-            const total = monto * 1.18
+    let codes = []
+    const codeyear = (new Date().getFullYear() + " ").slice(2,4)
+    let codeMonth = new Date().getMonth() + 1
+    let codeDay
+    if (codeMonth < 10) {
+        codeMonth = `0${codeMonth}`
+    }
+    if (parseInt(new Date().getDate()) < 10) {
+        codeDay = `0${new Date().getDate()}`
+    } else {
+        codeDay = new Date().getDate()
+    }
+    const codeDate = codeyear + codeMonth + codeDay
+    for (let i = 1; i <= 20; i++) { 
+        if (i < 10) {
+            codes.push(codeDate + '-' + `000${i}`)
+        } else {
+            codes.push(codeDate + '-' + `00${i}`)            
+        }
+    }
+
+
+    const updateInput = (monto) => {
+        if (monto !== NaN) {
+            const total = parseInt(monto * 1000) / 1000 * 118 / 100
+            setCtdIGVSoles(parseInt((total - monto) * 1000) / 1000)
             setTotalSoles(total)
         }else{
             const total = 0
             setTotalSoles(total)
+            setCtdIGVSoles(total)
         }
             
     };
 
-    const updateInput2 = (event) => {
-        const monto = parseFloat(event.target.value)
-        if (parseFloat(event.target.value) !== NaN) {
-            const total = monto * 1.18 * parseFloat(valueDolar) 
+    const updateInput2 = (monto) => {
+        if (monto !== NaN) {
+            const total = parseInt(monto * 1000) / 1000 * 118 / 100 * (parseInt(parseFloat(valueDolar) * 1000) / 1000)
+            const convertido = parseInt(monto * 1000) / 1000 * (parseInt(parseFloat(valueDolar) * 1000) / 1000)
+            setPriceTotalConvertido(convertido)
+            setctdIGVDolar(parseInt((total - convertido) * 1000) / 1000)
             setTotalDolares(total)
         }else{
             const total = 0
+            setPriceTotalConvertido(total)
             setTotalDolares(total)
+            setctdIGVDolar(total)
         }
     };
 
@@ -64,10 +97,62 @@ const ComprasAdd = (props) => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+        let ur = document.getElementsByClassName("unity-register")
+        let unities = []
+        
+        for (let i = 0; i < 20; i++) {
+            const element = ur[i];
+            let code
+            let description
+            let cuantity
+            let typeOfUnity
+            let price
+
+            if (element.childNodes.item(0).childNodes.item(0).value === "") {
+                continue
+            } else {
+                code = element.childNodes.item(0).childNodes.item(0).value
+            }
+
+            if (element.childNodes.item(1).childNodes.item(0).value === "") {
+                continue
+            } else {
+                description = element.childNodes.item(1).childNodes.item(0).value
+            }
+
+            if (element.childNodes.item(2).childNodes.item(0).value === "") {
+                continue
+            } else {
+                cuantity = element.childNodes.item(2).childNodes.item(0).value
+            }
+
+            if (element.childNodes.item(3).childNodes.item(0).value === "") {
+                continue
+            } else {
+                typeOfUnity = element.childNodes.item(3).childNodes.item(0).value
+            }
+
+            if (element.childNodes.item(4).childNodes.item(0).value === "") {
+                continue
+            } else {
+                price = element.childNodes.item(4).childNodes.item(0).value
+            }
+            const unity = {
+                code,
+                description,
+                cuantity,
+                typeOfUnity,
+                price
+            }
+            unities.push(unity)
+        }
+        console.log(unities);
+        // generals data
         let data = {}
         switch (solesDolars) {
             case "soles":
                 data = {
+                    unities,
                     month:          event.target.month[0].value,
                     year:           event.target.year[0].value,
                     date:           event.target.date.value,
@@ -88,6 +173,7 @@ const ComprasAdd = (props) => {
                 break;
             case "dolares":
                 data = {
+                    unities,
                     month:          event.target.month[0].value,
                     year:           event.target.year[0].value,
                     date:           event.target.date.value,
@@ -120,6 +206,14 @@ const ComprasAdd = (props) => {
     }
 
     useEffect(() => {
+        updateInput(priceTotal)
+    }, [priceTotal])
+
+    useEffect(() => {
+        updateInput2(priceTotal)
+    }, [priceTotal])
+
+    useEffect(() => {
         getSupplier(ruc)
     }, [ruc])
 
@@ -137,7 +231,7 @@ const ComprasAdd = (props) => {
 
     return (
         <div className="container-page">
-            <h1>Agregar Venta</h1>
+            <h1>Agregar Compra</h1>
             <form className="form-add-venta" onSubmit={onSubmit} >
                 <div className="form-1-add-venta">
                     <label htmlFor="mes_registro">
@@ -217,6 +311,8 @@ const ComprasAdd = (props) => {
                         NOMBRE O RAZÓN SOCIAL:
                         <input 
                             type="text" 
+                            name="business_name"
+                            className="razon-social-form"
                             value={razonSocial}
                             disabled={"true"}
                         />
@@ -246,19 +342,74 @@ const ComprasAdd = (props) => {
                     IMPONIBLE EN DOLARES: 
                 </p>
 
+                {solesDolars !== "" &&
+                    <table className="tabla-ventas" id="tabla_compras">
+                        <tr>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Tipo</th>
+                            <th>{`Precio(sin IGV) en ${solesDolars}`}</th>
+                        </tr>
+                        {codes.map((c) => {
+                            return (
+                                <tr className="unity-register">
+                                    <td><input type="text" name="code" value={c} disabled={true}/></td>
+                                    <td><input type="text" name="description"/></td>
+                                    <td><input type="text" name="cuantity"/></td>
+                                    <td>
+                                        <select name="typeOfUnity">
+                                            <option value="">---------------</option>
+                                            <option value="Herramientas">Herramientas</option>
+                                            <option value="Consumibles">Consumibles</option>
+                                            <option value="Maquinarias">Maquinarias</option>
+                                            <option value="Equipo">Equipo</option>
+                                            <option value="Servicio">Servicio</option>
+                                            <option value="Alimentos">Alimentos</option>
+                                            <option value="EPPs">EPPs</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input 
+                                            type="number" 
+                                            name="price" 
+                                            step="0.001"
+                                            onFocus={(event) => {
+                                                if (event.target.value !== "") {
+                                                    setPriceCapture(parseFloat(event.target.value))
+                                                }
+                                            }}
+                                            onBlur={() => {
+                                                setPriceTotal(priceTotal + priceMoment - priceCapture)
+                                                setPriceMoment(0)
+                                                setPriceCapture(0)
+                                            }} 
+                                            onChange={(event) => {
+                                                if (event.target.value !== "") {
+                                                    setPriceMoment(parseFloat(event.target.value))
+                                                }
+                                            }}
+                                        />
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </table>
+                }
+
                 {solesDolars === "soles" &&
                     <div className="form-3-add-venta">
                         <label htmlFor="tax_base">
-                            BASE IMPONIBLE (en soles):
-                            <input type="number" name="tax_base" id="tax_base" step="0.001" onChange={updateInput} />
+                            BASE IMPONIBLE TOTAL(en soles):
+                            <input type="number" name="tax_base" id="tax_base" value={priceTotal} disabled={"true"}  />
                         </label>
                         <label htmlFor="tb_igv">
                             IGV:
-                            <input type="number" name="tb_igv" id="tb_igv" step="0.01" value="0.18" disabled={"true"} />
+                            <input type="number" name="tb_igv" id="tb_igv" value={ctdIGVSoles} disabled={"true"} />
                         </label>
                         <label htmlFor="tb_total">
                             TOTAL:
-                            <input type="number" name="tb_total" id="tb_total" onChange={updateInput} value={totalSoles} disabled={"true"} />
+                            <input type="number" name="tb_total" id="tb_total" value={totalSoles} disabled={"true"} />
                         </label>
                     </div>
                 }
@@ -266,20 +417,24 @@ const ComprasAdd = (props) => {
                 {solesDolars === "dolares" &&
                     <div className="form-4-add-venta">
                         <label htmlFor="tax_base_dolar">
-                            BASE IMPONIBLE (en dolares):
-                            <input type="number" name="tax_base_dolar" id="tax_base_dolar" onChange={updateInput2} />
+                            BASE IMPONIBLE TOTAL(en dolares):
+                            <input type="number" name="tax_base_dolar" id="tax_base_dolar" value={priceTotal} disabled={"true"}/>
                         </label>
                         <label htmlFor="change_type">
                             TIPO DE CAMBIO:
                             <input type="number" name="change_type" id="change_type" value={valueDolar} disabled={"true"} />
                         </label>
+                        <label htmlFor="tax_base">
+                            BASE IMPONIBLE TOTAL(en soles):
+                            <input type="number" name="tax_base" id="tax_base" value={priceTotalConvertido} disabled={"true"}  />
+                        </label>
                         <label htmlFor="tb_igv_dolar">
                             IGV:
-                            <input type="number" name="tb_igv_dolar" id="tb_igv_dolar" value="0.18" disabled={"true"} />
+                            <input type="number" name="tb_igv_dolar" id="tb_igv_dolar" value={ctdIGVDolar} disabled={"true"} />
                         </label>
                         <label htmlFor="tb_total_dolar">
                             TOTAL:
-                            <input type="number" name="tb_total_dolar" id="tb_total_dolar" onChange={updateInput2} value={totalDolares} disabled={"true"} />
+                            <input type="number" name="tb_total_dolar" id="tb_total_dolar" value={totalDolares} disabled={"true"} />
                         </label>
                     </div>
                 }
