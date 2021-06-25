@@ -98,3 +98,19 @@ export const CreateSale = async (data) => {
         return false
     }
 }
+
+export const SearchByDateSale = async (desde, hasta) => {
+    const requestUrl = `${API_BASE_URL}/sales/search/date/${desde}/${hasta}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}

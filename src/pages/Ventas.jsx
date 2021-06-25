@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ShowVentas } from '../services/ventas';
+import { SearchByDateSale, ShowVentas } from '../services/ventas';
 import ReactHTMLTabletToExcel from 'react-html-table-to-excel';
 import '../assets/css/Ventas.css'
 import { SiMicrosoftexcel } from 'react-icons/si'
@@ -9,12 +9,27 @@ import { Link } from 'react-router-dom';
 const Ventas = () => {
 
     const [ventas, setVentas] = useState([])
+    const [dateStart, setDateStart] = useState("")
+    const [dateEnd, setDateEnd] = useState("")
 
     const getVentas = async () => {
         const result = await ShowVentas()
         setVentas(result.data)
         console.log(result);
     }
+
+    const filterDate = async (desde, hasta) => {
+        if (desde !== "" && hasta !== "") {
+            const d = new Date(dateStart.target.value).toISOString().slice(0,10)
+            const h = new Date(dateEnd.target.value).toISOString().slice(0,10)
+            const result = await SearchByDateSale(d, h);
+            setVentas(result.data)        
+        }
+    }
+
+    useEffect(() => {
+        filterDate(dateStart, dateEnd)
+    }, [dateStart, dateEnd])
 
     useEffect(() => {
         getVentas()
@@ -41,6 +56,19 @@ const Ventas = () => {
                         <div>INFORMACION DEL PROVEEDOR</div>
                                 <div>DOC. IDENTIDAD</div>
                         <div>ADQUI GRAV DESTINADAS A OPERACIONES GRAVADAS Y O DE EXPORTACION</div> */}
+            
+            <div className="container-filter-by-date">
+                <label htmlFor="fecha_desde">
+                    Desde: <br />
+                    <input type="date" name="fecha_desde" id="fecha_desde" onChange={setDateStart}/>
+                </label>
+                
+                <label htmlFor="fecha_hasta">
+                    Hasta: <br />
+                    <input type="date" name="fecha_hasta" id="fecha_hasta" onChange={setDateEnd}/>
+                </label>
+            </div>
+
             <table className="tabla-ventas" id="tabla_ventas">
                 <tr>
                     <th>NUMERO DEL REGISTRO O CODIGO UNICO DE OPERACION</th>

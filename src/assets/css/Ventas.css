@@ -36,7 +36,7 @@
 
 .container-filter-by-date{width: 350px;margin: auto;display: flex;justify-content: space-between;}
 .container-filter-by-date input[type="date"] {border-radius: 5px;width: 170px;font-size: 16px;border: 1px solid var(--baseColor);color: var(--baseColor);
-    padding: 7px 15px;}
+    padding: 7px 15px;margin-top: 5px;}
 
 @media screen and (min-width: 900px) {
     .razon-social-form{width: 400px;}

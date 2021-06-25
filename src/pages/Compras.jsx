@@ -4,7 +4,6 @@ import ReactHTMLTabletToExcel from 'react-html-table-to-excel';
 import { SiMicrosoftexcel } from 'react-icons/si'
 import { GrTableAdd } from 'react-icons/gr'
 import { Link } from 'react-router-dom';
-import DatePicker from 'react-date-picker';
 import '../assets/css/Ventas.css'
 
 const Compras = () => {
@@ -60,12 +59,22 @@ const Compras = () => {
             <div className="container-filter-by-date">
                 <label htmlFor="fecha_desde">
                     Desde: <br />
-                    <input type="date" name="fecha_desde" id="fecha_desde" onChange={setDateStart}/>
+                    <input 
+                        type="date" 
+                        name="fecha_desde" 
+                        id="fecha_desde" 
+                        onChange={setDateStart}
+                    />
                 </label>
                 
                 <label htmlFor="fecha_hasta">
                     Hasta: <br />
-                    <input type="date" name="fecha_hasta" id="fecha_hasta" onChange={setDateEnd}/>
+                    <input 
+                        type="date" 
+                        name="fecha_hasta" 
+                        id="fecha_hasta" 
+                        onChange={setDateEnd}
+                    />
                 </label>
             </div>
 
