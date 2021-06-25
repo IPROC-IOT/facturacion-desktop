@@ -19,6 +19,7 @@
 .tabla-ventas td, .tabla-ventas th {
     border: 1px solid var(--gray);
     padding: 8px;
+    font-size: 14px;
 }
 
 .tabla-ventas tr:nth-child(even){background-color: var(--opacity3);}
@@ -30,7 +31,12 @@
     padding-bottom: 12px;
     background-color: var(--table);
     color: var(--gray);
+    font-size: 12px;
 }
+
+.container-filter-by-date{width: 350px;margin: auto;display: flex;justify-content: space-between;}
+.container-filter-by-date input[type="date"] {border-radius: 5px;width: 170px;font-size: 16px;border: 1px solid var(--baseColor);color: var(--baseColor);
+    padding: 7px 15px;}
 
 @media screen and (min-width: 900px) {
     .razon-social-form{width: 400px;}

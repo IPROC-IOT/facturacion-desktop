@@ -43,6 +43,7 @@ const Ventas = () => {
                         <div>ADQUI GRAV DESTINADAS A OPERACIONES GRAVADAS Y O DE EXPORTACION</div> */}
             <table className="tabla-ventas" id="tabla_ventas">
                 <tr>
+                    <th>NUMERO DEL REGISTRO O CODIGO UNICO DE OPERACION</th>
                     <th>FECHA DE EMISION</th>
                     <th>TIPO</th>
                     <th>SERIE O CDA</th>
@@ -52,17 +53,18 @@ const Ventas = () => {
                     <th>NUMERO</th>
                     <th>APELLIDOS Y NOMBRES O RAZON SOCIAL</th>
 
-                    <th>BASE IMPONIBLE / OPERACION GRAVADA</th>
-                    <th>IGV</th>
+                    <th>BASE IMPONIBLE / OPERACION GRAVADA (soles)</th>
+                    <th>IGV (soles)</th>
 
                     <th>VALOR DE LAS ADQUISIC: OPERACIÓN  NO GRAVADA  /OPERACIÓN INAFECTA</th>
                     <th>OTROS TRIBUTOS Y CARGOS</th>
-                    <th>IMPORTE TOTAL</th>
+                    <th>IMPORTE TOTAL (soles)</th>
                     <th>TIPO DE CAMBIO</th>
                 </tr>
                 {ventas.map((v,index) => {
                     return(
-                        <tr key={index}>
+                        <tr key={v.id}>
+                            <td>{v.id}</td>
                             <td>{v.date}</td>
                             <td>{v.document.number}</td>
                             <td>{v.serie}</td>

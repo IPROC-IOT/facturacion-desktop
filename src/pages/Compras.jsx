@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { ShowCompras } from '../services/compras';
+import { SearchByDatePucharse, ShowCompras } from '../services/compras';
 import ReactHTMLTabletToExcel from 'react-html-table-to-excel';
 import { SiMicrosoftexcel } from 'react-icons/si'
 import { GrTableAdd } from 'react-icons/gr'
 import { Link } from 'react-router-dom';
+import DatePicker from 'react-date-picker';
 import '../assets/css/Ventas.css'
 
 const Compras = () => {
 
     const [compras, setCompras] = useState([])
+    const [dateStart, setDateStart] = useState("")
+    const [dateEnd, setDateEnd] = useState("")
 
     const getCompras = async () => {
         const result = await ShowCompras()
         setCompras(result.data)
-        console.log(result);
     }
+
+    const filterDate = async (desde, hasta) => {
+        if (desde !== "" && hasta !== "") {
+            const d = new Date(dateStart.target.value).toISOString().slice(0,10)
+            const h = new Date(dateEnd.target.value).toISOString().slice(0,10)
+            const result = await SearchByDatePucharse(d, h);
+            setCompras(result.data)        
+        }
+    }
+
+    useEffect(() => {
+        filterDate(dateStart, dateEnd)
+    }, [dateStart, dateEnd])
 
     useEffect(() => {
         getCompras()
@@ -41,8 +56,22 @@ const Compras = () => {
                         <div>INFORMACION DEL PROVEEDOR</div>
                                 <div>DOC. IDENTIDAD</div>
                         <div>ADQUI GRAV DESTINADAS A OPERACIONES GRAVADAS Y O DE EXPORTACION</div> */}
+
+            <div className="container-filter-by-date">
+                <label htmlFor="fecha_desde">
+                    Desde: <br />
+                    <input type="date" name="fecha_desde" id="fecha_desde" onChange={setDateStart}/>
+                </label>
+                
+                <label htmlFor="fecha_hasta">
+                    Hasta: <br />
+                    <input type="date" name="fecha_hasta" id="fecha_hasta" onChange={setDateEnd}/>
+                </label>
+            </div>
+
             <table className="tabla-ventas" id="tabla_compras">
                 <tr>
+                    <th>NUMERO DEL REGISTRO O CODIGO UNICO DE OPERACION</th>
                     <th>FECHA DE EMISION</th>
                     <th>TIPO</th>
                     <th>SERIE O CDA</th>
@@ -52,17 +81,18 @@ const Compras = () => {
                     <th>NUMERO</th>
                     <th>APELLIDOS Y NOMBRES O RAZON SOCIAL</th>
 
-                    <th>BASE IMPONIBLE / OPERACION GRAVADA</th>
-                    <th>IGV</th>
+                    <th>BASE IMPONIBLE / OPERACION GRAVADA (soles)</th>
+                    <th>IGV (soles)</th>
 
                     <th>VALOR DE LAS ADQUISIC: OPERACIÓN  NO GRAVADA  /OPERACIÓN INAFECTA</th>
-                    <th>OTROS TRIBUTOS Y CARGOS</th>
-                    <th>IMPORTE TOTAL</th>
+                    <th>OTROS TRIBUTOS Y CARGOS (dolares)</th>
+                    <th>IMPORTE TOTAL (soles)</th>
                     <th>TIPO DE CAMBIO</th>
                 </tr>
                 {compras.map((v,index) => {
                     return(
-                        <tr key={index}>
+                        <tr key={v.id}>
+                            <td>{v.id}</td>
                             <td>{v.date}</td>
                             <td>{v.document.number}</td>
                             <td>{v.serie}</td>
