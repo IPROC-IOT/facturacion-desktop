@@ -114,3 +114,19 @@ export const SearchByDateSale = async (desde, hasta) => {
         return false
     }
 }
+
+export const SearchSale = async (data) => {
+    const requestUrl = `${API_BASE_URL}/sales/search/look/${data}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}

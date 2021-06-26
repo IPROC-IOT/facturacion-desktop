@@ -45,6 +45,8 @@ const Compras = () => {
             }else{
                 setCompras([])
             }
+        }else{
+            getCompras()
         }
     }
 
