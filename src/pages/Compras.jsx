@@ -12,7 +12,21 @@ const Compras = () => {
     const [compras, setCompras] = useState([])
     const [dateStart, setDateStart] = useState("")
     const [dateEnd, setDateEnd] = useState("")
+    const [total, setTotal] = useState(0)
+    const [totalRegister, setTotalRegister] = useState(0)
 
+    const funcSumTotal = async (c) => {
+        let sumTotal = 0
+        for (let i = 0; i < c.length; i++) {
+            const element = c[i];
+            sumTotal += element.tb_total
+            sumTotal += element.tb_total_dolar
+        }
+        sumTotal = parseInt(sumTotal * 1000) / 1000
+        setTotal(sumTotal)
+        setTotalRegister(c.length)
+    }   
+ 
     const getCompras = async () => {
         const result = await ShowCompras()
         if (result.statusText === "OK") {
@@ -58,15 +72,15 @@ const Compras = () => {
         getCompras()
     }, [])
 
+    useEffect(() => {
+        funcSumTotal(compras)
+    }, [compras])
+
     return (
         <div className="container-page">
             <div className="container-title-operations">
                 <h1>Registro de compras </h1>
             </div>
-                        {/* <div>COMPROBANTE DE PAGO O DOCUMENTO</div>
-                        <div>INFORMACION DEL PROVEEDOR</div>
-                                <div>DOC. IDENTIDAD</div>
-                        <div>ADQUI GRAV DESTINADAS A OPERACIONES GRAVADAS Y O DE EXPORTACION</div> */}
 
             <div className="container-all-filters">
                 <form className="container-search-filter" onSubmit={onSubmit}>
@@ -113,6 +127,17 @@ const Compras = () => {
                 </div>
             </div>
 
+            <div className="container-total-data">
+                <div>
+                    <h4>Total de registros:</h4>
+                    <div>{totalRegister}</div>
+                </div>
+                <div>
+                    <h4>Total de gastos en compra:</h4>
+                    <div>S/ {total}</div>
+                </div>
+            </div>
+
             <table className="tabla-ventas" id="tabla_compras">
                 <tr>
                     <th>NUMERO DEL REGISTRO O CODIGO UNICO DE OPERACION</th>
@@ -133,10 +158,10 @@ const Compras = () => {
                     <th>IMPORTE TOTAL (soles)</th>
                     <th>TIPO DE CAMBIO</th>
                 </tr>
-                {compras.map((v,index) => {
+                {compras.map((v) => {
                     return(
                         <tr key={v.id}>
-                            <td>{v.id}</td>
+                            <td style={{width: "30px"}}>{v.id}</td>
                             <td>{v.date}</td>
                             <td>{v.document.number}</td>
                             <td>{v.serie}</td>
