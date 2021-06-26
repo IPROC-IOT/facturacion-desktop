@@ -34,7 +34,15 @@
     font-size: 12px;
 }
 
-.container-filter-by-date{width: 350px;margin: auto;display: flex;justify-content: space-between;}
+.container-all-filters{margin: 0px 30px;}
+
+.container-all-filters{display: flex;justify-content: space-between;align-items: center;}
+
+.container-input-search{border: 1px solid var(--baseColor);padding: 5px 12px;border-radius: 7px;display: flex;margin-top: 5px;}
+.container-input-search button{display: flex;align-items: center;}
+.container-input-search input{font-size: 16px;padding: 5px;}
+
+.container-filter-by-date{display: flex;justify-content: space-between;width: 350px;}
 .container-filter-by-date input[type="date"] {border-radius: 5px;width: 170px;font-size: 16px;border: 1px solid var(--baseColor);color: var(--baseColor);
     padding: 7px 15px;margin-top: 5px;}
 

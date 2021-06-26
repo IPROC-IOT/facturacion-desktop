@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../assets/css/Header.css'
 import BtnDarkMode from '../components/BtnDarkMode'
+import Logo from '../assets/img/logo-synho.png'
+import Logo2 from '../assets/img/logo-synho-2.jpeg'
+import '../assets/css/Header.css'
 
 const Header = () => {
     return (
         <header>
-            <div className="logo-header">SYNHO</div>
+            <div className="logo-header"><img src={Logo2} alt="synho" style={{height:"55px"}}/></div>
             <div>
                 <BtnDarkMode/>
             </div>

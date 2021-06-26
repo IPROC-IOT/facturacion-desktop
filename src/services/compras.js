@@ -114,3 +114,19 @@ export const SearchByDatePucharse = async (desde, hasta) => {
         return false
     }
 }
+
+export const SearchPucharse = async (date) => {
+    const requestUrl = `${API_BASE_URL}/purchases/search/look/${date}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
