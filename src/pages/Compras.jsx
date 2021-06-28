@@ -168,13 +168,13 @@ const Compras = () => {
                             <td>{v.number}</td>
                             
                             <td>{v.type_recipe.number}</td>
-                            <td>{v.supplier.ruc}</td>
-                            <td>{v.supplier.business_name}</td>
+                            <td style={{width: "120px"}}>{v.supplier.ruc}</td>
+                            <td style={{width: "400px"}}>{v.supplier.business_name}</td>
                             
-                            <td>{v.tax_base}</td>
+                            <td style={{width: "100px"}}>{v.tax_base}</td>
                             <td>{v.tb_igv}</td>
                                 
-                            <td>{v.tb_total}</td>
+                            <td style={{width: "150px"}}>{v.tb_total}</td>
                             <td>{v.tax_base_dolar}</td>
                             <td>{v.tb_total_dolar}</td>
                             <td>{v.change_type}</td>
