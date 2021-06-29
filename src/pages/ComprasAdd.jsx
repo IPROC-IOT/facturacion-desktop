@@ -44,7 +44,6 @@ const ComprasAdd = (props) => {
         }
     }
 
-
     const updateInput = (monto) => {
         if (monto !== NaN) {
             const total = parseInt(monto * 1000) / 1000 * 118 / 100
@@ -98,6 +97,7 @@ const ComprasAdd = (props) => {
         event.preventDefault();
         let ur = document.getElementsByClassName("unity-register")
         let unities = []
+        let myError = false
         
         for (let i = 0; i < 20; i++) {
             const element = ur[i];
@@ -120,18 +120,24 @@ const ComprasAdd = (props) => {
             }
 
             if (element.childNodes.item(2).childNodes.item(0).value === "") {
+                setError(true)
+                myError = true
                 continue
             } else {
                 cuantity = element.childNodes.item(2).childNodes.item(0).value
             }
 
             if (element.childNodes.item(3).childNodes.item(0).value === "") {
+                setError(true)
+                myError = true
                 continue
             } else {
                 typeOfUnity = element.childNodes.item(3).childNodes.item(0).value
             }
 
             if (element.childNodes.item(4).childNodes.item(0).value === "") {
+                setError(true)
+                myError = true
                 continue
             } else {
                 price = element.childNodes.item(4).childNodes.item(0).value
@@ -197,13 +203,15 @@ const ComprasAdd = (props) => {
                 setError(true)
                 break;
         }
-        const result = await CreatePucharse(data)
-        if (result.statusText === "OK") {
-            props.history.push("/compras")
-        } else {
-            setError(true)
+        console.log(!myError);
+        if (!myError) {
+            const result = await CreatePucharse(data)
+            if (result.statusText === "OK") {
+                props.history.push("/compras")
+            } else {
+                setError(true)
+            }            
         }
-        console.log(result);
     }
 
     useEffect(() => {
@@ -452,7 +460,7 @@ const ComprasAdd = (props) => {
                 {error &&
                     <p className="error">Completar todos los campos correctamente</p>
                 }
-                <button type="submit">Agregar venta</button>
+                <button type="submit">Agregar compra</button>
             </form>
         </div>
     )

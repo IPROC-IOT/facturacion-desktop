@@ -130,3 +130,19 @@ export const SearchPucharse = async (date) => {
         return false
     }
 }
+
+export const UnitiesPucharse = async () => {
+    const requestUrl = `${API_BASE_URL}/purchases/unities/all/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
