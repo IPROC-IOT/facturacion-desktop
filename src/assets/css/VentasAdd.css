@@ -1,6 +1,6 @@
 .form-add-venta{max-width: 1200px;margin: auto;border: 1px solid var(--baseColor);padding: 25px;border-radius: 7px;margin-bottom: 50PX;}
 label{margin: 10px 0px;display: inline-block;}
-.form-add-venta select, .form-add-venta input{border: 1px solid var(--baseColor);padding: 5px 10px;font-size: 16px;border-radius: 5px;}
+.form-add-venta select, .form-add-venta input{border: 1px solid var(--baseColor);padding: 8px 10px;font-size: 16px;border-radius: 5px;}
 .container-page .react-date-picker__inputGroup input{border: none;}
 
 .form-1-add-venta{display: flex;flex-wrap: wrap;}
@@ -8,6 +8,11 @@ label{margin: 10px 0px;display: inline-block;}
 .form-2-add-venta{display: flex;flex-wrap: wrap;}
 .form-3-add-venta{display: flex;flex-wrap: wrap;margin: 20px 0px;}
 .form-4-add-venta{display: flex;flex-wrap: wrap;margin: 20px 0px;}
+
+.form-2-add-venta label input, .form-2-add-venta label select{margin-top: 10px;}
+.fecha_emision{margin-top: 10px;}
+.fecha_emision .react-date-picker__wrapper{padding: 2px;border-radius: 7px;padding: 5px;}
+.fecha_emision input{margin-top: 0px!important;padding: 0px;padding-left: 7px;}
 
 .form-add-venta button[type="submit"]{font-size: 16px;border: 1px solid var(--baseColor);background-color: var(--table);color: var(--gray);
     padding: 15px;width: 150px;margin: auto;display: block;border-radius: 7px;margin-top: 30px;}
@@ -18,5 +23,4 @@ label{margin: 10px 0px;display: inline-block;}
     .form-2-add-venta{justify-content: space-between;}
     .form-3-add-venta{justify-content: space-between;}
     .form-4-add-venta{justify-content: space-between;}
-    
 }

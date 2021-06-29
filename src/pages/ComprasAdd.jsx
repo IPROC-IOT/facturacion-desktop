@@ -54,8 +54,7 @@ const ComprasAdd = (props) => {
             const total = 0
             setTotalSoles(total)
             setCtdIGVSoles(total)
-        }
-            
+        }            
     };
 
     const updateInput2 = (monto) => {
@@ -141,8 +140,8 @@ const ComprasAdd = (props) => {
                 code,
                 description,
                 cuantity,
+                price,
                 typeOfUnity,
-                price
             }
             unities.push(unity)
         }
@@ -158,13 +157,14 @@ const ComprasAdd = (props) => {
                     date:           event.target.date.value,
                     document:       event.target.document.value,
                     serie:          event.target.serie.value,
-                    number:         parseFloat(event.target.number.value),
+                    number:         parseFloat(event.target.number_recipe.value),
                     recipe:         event.target.recipe.value,
                     ruc:            parseFloat(event.target.ruc.value),
                     tax_base:       parseFloat(event.target.tax_base.value),
                     tb_igv:         parseFloat(event.target.tb_igv.value),
                     tb_total:       parseFloat(event.target.tb_total.value),
                     business_name:  razonSocial,
+                    moneda:         solesDolars,
                     tax_base_dolar: null,
                     change_type:    null,
                     tb_igv_dolar:   null,
@@ -179,7 +179,7 @@ const ComprasAdd = (props) => {
                     date:           event.target.date.value,
                     document:       event.target.document.value,
                     serie:          event.target.serie.value,
-                    number:         parseFloat(event.target.number.value),
+                    number:         parseFloat(event.target.number_recipe.value),
                     recipe:         event.target.recipe.value,
                     ruc:            parseFloat(event.target.ruc.value),
                     tax_base_dolar: parseFloat(event.target.tax_base_dolar.value),
@@ -187,6 +187,7 @@ const ComprasAdd = (props) => {
                     tb_igv_dolar:   parseFloat(event.target.tb_igv_dolar.value),
                     tb_total_dolar: parseFloat(event.target.tb_total_dolar.value),
                     business_name:  razonSocial,
+                    moneda:         solesDolars,
                     tax_base:       null,
                     tb_igv:         null,
                     tb_total:       null,
@@ -235,9 +236,9 @@ const ComprasAdd = (props) => {
             <form className="form-add-venta" onSubmit={onSubmit} >
                 <div className="form-1-add-venta">
                     <label htmlFor="mes_registro">
-                        MES DE REGISTRO:
+                        MES DE REGISTRO: &nbsp;
                         <select name="month" id="mes_registro">
-                            <option value="">------------</option>
+                            <option value="">-------------------</option>
                             <option value="Enero">Enero</option>
                             <option value="Febrero">Febrero</option>
                             <option value="Marzo">Marzo</option>
@@ -253,12 +254,13 @@ const ComprasAdd = (props) => {
                         </select>
                     </label>
                     <label htmlFor="year">
-                        AÑO DE REGISTRO:
+                        AÑO DE REGISTRO: &nbsp;
                         <input 
                             type="number" 
                             name="year" 
                             id="year" 
-                            placeholder={new Date().getFullYear()} 
+                            style={{width:"80px"}}
+                            defaultValue={new Date().getFullYear()} 
                         />
                     </label>
                 </div>
@@ -267,48 +269,55 @@ const ComprasAdd = (props) => {
 
                 <div className="form-2-add-venta">
                     <label htmlFor="fecha_emision">
-                        FECHA DE EMISION: 
+                        FECHA DE EMISION: <br/>
                         <DatePicker
                             id="fecha_emision"
+                            className="fecha_emision"
                             onChange={setValue}
                             name="date"
                             value={value}
                         />
                     </label>
                     <label htmlFor="document">
-                        TIPO DE DOCUMENTO:
+                        TIPO DE DOCUMENTO: <br />
                         <select name="document" id="document">
-                            <option value="">------------------</option>
+                            <option value="">----------------------</option>
                             {typeDoc.map((t) => <option key={t.id} value={t.document}>{t.document}</option>)}
                         </select>
                     </label>
                     <label htmlFor="serie">
-                        SERIE:
+                        SERIE: <br />
                         <input type="text" name="serie" id="serie" />
                     </label>
-                    <label htmlFor="number">
-                        NÚMERO:
-                        <input type="number" name="number" id="number" />
+                    <label htmlFor="number_recipe">
+                        NÚMERO: <br />
+                        <input type="number" name="number_recipe" id="number_recipe" />
                     </label>
                     <label htmlFor="recipe">
-                        TIPO:
+                        TIPO: <br />
                         <select name="recipe" id="recipe">
-                            <option value="">------------------</option>
+                            <option value="">---------------</option>
                             {typeRecipe.map((t) => <option key={t.id} value={t.recipe}>{t.recipe}</option>)}
                         </select>
                     </label>
+                </div>
+
+                <p>INFORMACION DEL PROVEEDOR:</p>
+
+                <div className="form-2-add-venta">
                     <label htmlFor="ruc">
-                        RUC DEL PROVEEDOR:
+                        RUC DEL PROVEEDOR: <br />
                         <input 
                             type="number" 
                             name="ruc" 
                             id="ruc" 
                             max="999999999999"
+                            className="ruc-provedor-form"
                             onChange={(event) => setRuc(event.target.value)}
                         />
                     </label>
                     <label htmlFor="razon_social">
-                        NOMBRE O RAZÓN SOCIAL:
+                        NOMBRE O RAZÓN SOCIAL: <br />
                         <input 
                             type="text" 
                             name="business_name"

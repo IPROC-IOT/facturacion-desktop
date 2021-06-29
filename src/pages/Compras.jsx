@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { SearchByDatePucharse, SearchPucharse, ShowCompras } from '../services/compras';
 import ReactHTMLTabletToExcel from 'react-html-table-to-excel';
 import { SiMicrosoftexcel } from 'react-icons/si'
-import { GrTableAdd } from 'react-icons/gr'
+import { RiFileAddLine } from 'react-icons/ri'
 import { Link } from 'react-router-dom';
 import { ImSearch } from 'react-icons/im'
+import { CgDetailsMore } from 'react-icons/cg'
 import '../assets/css/Ventas.css'
 
 const Compras = () => {
@@ -114,6 +115,9 @@ const Compras = () => {
                     </label>
                 </div>
                 <div className="container-save-add">
+                    <Link className="btn-list-detail-unities" to="/compras/unities/all">
+                        <CgDetailsMore/>
+                    </Link>
                     <ReactHTMLTabletToExcel
                         id="botonExportarExcel"
                         table="tabla_compras"
@@ -122,7 +126,7 @@ const Compras = () => {
                         buttonText={<SiMicrosoftexcel/>}
                     />
                     <Link to="/compras/add">
-                        <GrTableAdd/> Agregar
+                        <RiFileAddLine/> Agregar
                     </Link>
                 </div>
             </div>

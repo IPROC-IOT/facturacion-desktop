@@ -176,6 +176,7 @@ const VentasAdd = (props) => {
                         FECHA DE EMISION: &nbsp;
                         <DatePicker
                             id="fecha_emision"
+                            className="fecha_emision"
                             onChange={setValue}
                             name="date"
                             value={value}
