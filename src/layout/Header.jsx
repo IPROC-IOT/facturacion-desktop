@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import BtnDarkMode from '../components/BtnDarkMode'
-import Logo from '../assets/img/logo-synho.png'
 import Logo2 from '../assets/img/logo-synho-2.jpeg'
 import '../assets/css/Header.css'
 
