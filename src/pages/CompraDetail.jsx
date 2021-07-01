@@ -74,7 +74,7 @@ const CompraDetail = (props) => {
                                     <th>Disponible</th>
                                 </tr>
                                 <tr>
-                                    <td><Link to={`/compras/unities/detail/${uni.id}`}></Link>{uni.code}</td>
+                                    <td><Link to={`/compras/unities/detail/${uni.id}`}>{uni.code}</Link></td>
                                     <td>{uni.description}</td>
                                     <td>{uni.typeOfUnity.title}</td>
                                     <td>{uni.moneda === "soles" ? uni.price * 118 / 100 : "-------"}</td>

@@ -3,6 +3,7 @@ import { UnitiesPucharse } from '../services/compras'
 import { FaCheckCircle } from 'react-icons/fa'
 import { RiCloseCircleFill } from 'react-icons/ri'
 import '../assets/css/UnidadesCompra.css'
+import { Link } from 'react-router-dom'
 
 const UnidadesCompra = () => {
 
@@ -39,7 +40,7 @@ const UnidadesCompra = () => {
                 {unities.map((u) => {
                     return(
                         <tr key={u.id}>
-                            <td>{u.code}</td>
+                            <td><Link to={`/compras/unities/detail/${u.id}`}>{u.code}</Link></td>
                             <td>{u.description}</td>
                             <td>{u.typeOfUnity.title}</td>
                             <td>{u.moneda === "soles" ? u.price * 118 / 100 : "-------"}</td>
