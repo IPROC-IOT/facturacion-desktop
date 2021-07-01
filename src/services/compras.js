@@ -146,3 +146,35 @@ export const UnitiesPucharse = async () => {
         return false
     }
 }
+
+export const getPurcharseDetail = async (id) => {
+    const requestUrl = `${API_BASE_URL}/purchases/purchases/detail/${id}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+export const getUnitiesPurchase = async (id) => {
+    const requestUrl = `${API_BASE_URL}/purchases/unities-by-purchase/${id}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}

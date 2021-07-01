@@ -38,7 +38,7 @@ const UnidadesCompra = () => {
                 </tr>
                 {unities.map((u) => {
                     return(
-                        <tr>
+                        <tr key={u.id}>
                             <td>{u.code}</td>
                             <td>{u.description}</td>
                             <td>{u.typeOfUnity.title}</td>

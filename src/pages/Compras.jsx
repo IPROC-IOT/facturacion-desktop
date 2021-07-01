@@ -165,7 +165,7 @@ const Compras = () => {
                 {compras.map((v) => {
                     return(
                         <tr key={v.id}>
-                            <td style={{width: "30px"}}>{v.id}</td>
+                            <td style={{width: "30px"}}><Link to={`/compras/detail/${v.id}`}>{v.id}</Link></td>
                             <td>{v.date}</td>
                             <td>{v.document.number}</td>
                             <td>{v.serie}</td>
