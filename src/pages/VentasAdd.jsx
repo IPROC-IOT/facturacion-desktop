@@ -19,7 +19,7 @@ const VentasAdd = (props) => {
 
     const updateInput = (event) => {
         const monto = parseFloat(event.target.value)
-        if (parseFloat(event.target.value) !== NaN) {
+        if (!isNaN(parseFloat(event.target.value))) {
             const total = monto * 1.18
             setTotalSoles(total)
         }else{
@@ -31,7 +31,7 @@ const VentasAdd = (props) => {
 
     const updateInput2 = (event) => {
         const monto = parseFloat(event.target.value)
-        if (parseFloat(event.target.value) !== NaN) {
+        if (!isNaN(parseFloat(event.target.value))) {
             const total = monto * 1.18 * parseFloat(valueDolar) 
             setTotalDolares(total)
         }else{
