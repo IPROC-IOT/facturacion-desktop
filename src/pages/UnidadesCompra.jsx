@@ -35,7 +35,6 @@ const UnidadesCompra = () => {
                     <th>Nombre de Proveedor</th>
                     <th>Ultimo Responsable</th>
                     <th>Disponible</th>
-                    {/* <th>{`Precio(sin IGV) en ${solesDolars}`}</th> */}
                 </tr>
                 {unities.map((u) => {
                     return(
