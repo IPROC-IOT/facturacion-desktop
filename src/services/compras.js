@@ -178,3 +178,84 @@ export const getUnitiesPurchase = async (id) => {
         return false
     }
 }
+
+export const getUnityDetail = async (id) => {
+    const requestUrl = `${API_BASE_URL}/purchases/unities/detail/${id}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+export const createUnityResponsable = async (data) => {
+    const requestUrl = `${API_BASE_URL}/purchases/unities-responsible/create/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'post',
+            data,
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+export const unitiesResponsableFilterView = async (id) => {
+    const requestUrl = `${API_BASE_URL}/purchases/unities/purchase/${id}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+export const SearchByDateUnities = async (desde, hasta) => {
+    const requestUrl = `${API_BASE_URL}/purchases/unities/search/date/${desde}/${hasta}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+export const SearchUnities = async (date) => {
+    const requestUrl = `${API_BASE_URL}/purchases/unities/search/look/${date}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}

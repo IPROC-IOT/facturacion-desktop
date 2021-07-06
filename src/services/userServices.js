@@ -17,3 +17,19 @@ export const LoginService = async (data) => {
         return false
     }
 }
+
+export const AllUsers = async () => {
+    const requestUrl = `${API_BASE_URL}/users/all-users/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status === 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}

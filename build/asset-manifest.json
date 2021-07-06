@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/facturacion-desktop/static/css/main.80bc0687.chunk.css",
-    "main.js": "/facturacion-desktop/static/js/main.e42b1b1b.chunk.js",
-    "main.js.map": "/facturacion-desktop/static/js/main.e42b1b1b.chunk.js.map",
-    "runtime-main.js": "/facturacion-desktop/static/js/runtime-main.2e09c401.js",
-    "runtime-main.js.map": "/facturacion-desktop/static/js/runtime-main.2e09c401.js.map",
+    "main.css": "/facturacion-desktop/static/css/main.83b4e233.chunk.css",
+    "main.js": "/facturacion-desktop/static/js/main.42a4d885.chunk.js",
+    "main.js.map": "/facturacion-desktop/static/js/main.42a4d885.chunk.js.map",
+    "runtime-main.js": "/facturacion-desktop/static/js/runtime-main.87e262fb.js",
+    "runtime-main.js.map": "/facturacion-desktop/static/js/runtime-main.87e262fb.js.map",
     "static/css/2.9c6b934b.chunk.css": "/facturacion-desktop/static/css/2.9c6b934b.chunk.css",
-    "static/js/2.22e87099.chunk.js": "/facturacion-desktop/static/js/2.22e87099.chunk.js",
-    "static/js/2.22e87099.chunk.js.map": "/facturacion-desktop/static/js/2.22e87099.chunk.js.map",
-    "static/js/3.b0aafa5a.chunk.js": "/facturacion-desktop/static/js/3.b0aafa5a.chunk.js",
-    "static/js/3.b0aafa5a.chunk.js.map": "/facturacion-desktop/static/js/3.b0aafa5a.chunk.js.map",
+    "static/js/2.6e1b67d2.chunk.js": "/facturacion-desktop/static/js/2.6e1b67d2.chunk.js",
+    "static/js/2.6e1b67d2.chunk.js.map": "/facturacion-desktop/static/js/2.6e1b67d2.chunk.js.map",
+    "static/js/3.8e414812.chunk.js": "/facturacion-desktop/static/js/3.8e414812.chunk.js",
+    "static/js/3.8e414812.chunk.js.map": "/facturacion-desktop/static/js/3.8e414812.chunk.js.map",
     "index.html": "/facturacion-desktop/index.html",
     "static/css/2.9c6b934b.chunk.css.map": "/facturacion-desktop/static/css/2.9c6b934b.chunk.css.map",
-    "static/css/main.80bc0687.chunk.css.map": "/facturacion-desktop/static/css/main.80bc0687.chunk.css.map",
-    "static/js/2.22e87099.chunk.js.LICENSE.txt": "/facturacion-desktop/static/js/2.22e87099.chunk.js.LICENSE.txt"
+    "static/css/main.83b4e233.chunk.css.map": "/facturacion-desktop/static/css/main.83b4e233.chunk.css.map",
+    "static/js/2.6e1b67d2.chunk.js.LICENSE.txt": "/facturacion-desktop/static/js/2.6e1b67d2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.2e09c401.js",
+    "static/js/runtime-main.87e262fb.js",
     "static/css/2.9c6b934b.chunk.css",
-    "static/js/2.22e87099.chunk.js",
-    "static/css/main.80bc0687.chunk.css",
-    "static/js/main.e42b1b1b.chunk.js"
+    "static/js/2.6e1b67d2.chunk.js",
+    "static/css/main.83b4e233.chunk.css",
+    "static/js/main.42a4d885.chunk.js"
   ]
 }

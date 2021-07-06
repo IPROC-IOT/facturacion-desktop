@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { getPurcharseDetail, getUnitiesPurchase } from '../services/compras';
 import { FaCheckCircle } from 'react-icons/fa'
 import { RiCloseCircleFill } from 'react-icons/ri'
+import ReactHTMLTabletToExcel from 'react-html-table-to-excel';
+import { SiMicrosoftexcel } from 'react-icons/si'
 import { Link } from 'react-router-dom';
 import '../assets/css/ComprasDetail.css'
 
@@ -58,10 +60,17 @@ const CompraDetail = (props) => {
                                 </>
                         }
                     </div>
-                    <h2>Unidades de Compra</h2>
+                    <h2>Unidades de Compra &nbsp;
+                    <ReactHTMLTabletToExcel
+                        id="botonExportarExcel"
+                        table="tabla_compras_all"
+                        filename={`compras ${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()} `}
+                        sheet="pagina 1"
+                        buttonText={<SiMicrosoftexcel/>}
+                    /></h2>
                     {myUnities.map((uni) => {
                         return(
-                            <table key={uni.id}  className="tabla-ventas">
+                            <table key={uni.id}  className="tabla-ventas" id="tabla_compras_all">
                                 <tr>
                                     <th>Código de Producto</th>
                                     <th>Nombre del Producto</th>
@@ -81,7 +90,7 @@ const CompraDetail = (props) => {
                                     <td>{uni.moneda === "dolares" ? uni.price * 118 / 100 : "-------"}</td>
                                     <td>{uni.date}</td>
                                     <td>{uni.purchase.supplier.business_name}</td>
-                                    <td>{uni.responsable ? uni.responsable : "---------"}</td>
+                                    <td>{uni.responsable ? uni.responsable.first_name + ' ' + uni.responsable.last_name : "---------"}</td>
                                     <td>{uni.available 
                                         ? <FaCheckCircle className="check-available"/>
                                         : <RiCloseCircleFill className="non-available"/>

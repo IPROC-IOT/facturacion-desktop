@@ -1,0 +1,2 @@
+.container-top-unities-detail{display: grid;grid-template-columns: auto auto auto auto;max-width: 1200px;margin: auto;row-gap: 3px;column-gap: 2px;}
+.container-top-unities-detail p{border: 1px solid var(--baseColor);padding: 8px 5px;}
